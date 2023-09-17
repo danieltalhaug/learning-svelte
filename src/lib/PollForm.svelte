@@ -1,6 +1,6 @@
 <script lang="ts">
     // Types
-    import type { id, question, answer } from '../common/types';
+    import type { id, question, option } from '../common/types';
     import { buttonTypes } from '../common/enums';
     // Components
     import FormLabel from './FormLabel.svelte';
@@ -12,21 +12,21 @@
 
     let form: HTMLFormElement;
     let newQuestion: question = '';
-    let answers: answer[] = [
+    let options: option[] = [
         {id: nanoid(), value: '', count: 0},
     ]
     
-    function onAddNewAnswer() {
-        answers = [
-            ...answers,
+    function onAddNewoption() {
+        options = [
+            ...options,
             {id: nanoid(), value: '', count: 0},
         ];
     }
 
-    // Gets the Index of the answer, can be used for displaying it's number
-    // in the rendered list of answers
-    function getAnswerIndex(id: id) {
-        return answers.findIndex(answer => answer.id === id);
+    // Gets the Index of the option, can be used for displaying it's number
+    // in the rendered list of options
+    function getoptionIndex(id: id) {
+        return options.findIndex(option => option.id === id);
     }
 
     // Submits and creates a new poll
@@ -34,7 +34,7 @@
         dispatch('submit', {
             id: nanoid(),
             question: newQuestion,
-            answers,
+            options,
         });
 
         resetForm();
@@ -46,6 +46,9 @@
     }
 
     function resetForm() {
+        newQuestion = '';
+        options = [{id: nanoid(), value: '', count: 0}];
+
         form.reset();
     }
 
@@ -60,17 +63,17 @@
         <input type="text" class="focus" bind:value={newQuestion}>
     </FormLabel>
 
-    {#each answers as answer (answer.id)}
-        <FormLabel label={'Answer ' + (getAnswerIndex(answer.id) + 1)}>
+    {#each options as option (option.id)}
+        <FormLabel label={'Option ' + (getoptionIndex(option.id) + 1)}>
             <input type="text" class="focus" bind:value={option.value}>
         </FormLabel>
     {/each}
 
     <Button
         type={buttonTypes.SECONDARY}
-        on:clicked={onAddNewAnswer}
+        on:clicked={onAddNewoption}
     >
-        + Add question
+        + Add option
     </Button>
 
     <footer class="my-4 flex justify-between">

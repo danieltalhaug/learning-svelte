@@ -2,7 +2,7 @@ export type id = string;
 
 export type question = string;
 
-export type answer = {
+export type option = {
     id: id,
     value: string,
     count: number,
@@ -11,5 +11,5 @@ export type answer = {
 export type poll = {
     id: id,
     question: question,
-    answers: answer[],
+    options: option[],
 }

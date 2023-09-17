@@ -35,7 +35,7 @@
 <AppAside
     show={showAside}
     title={'Create new poll'}
-    subtitle={'Add a question and the amount of answers you want, submit to create a new poll.'}
+    subtitle={'Add a question and the amount of options you want, submit to create a new poll.'}
 >
     <PollForm
         on:submit={onCreatePoll}
