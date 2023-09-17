@@ -26,7 +26,7 @@
     }
 
     $: totalCount = poll.options.reduce((sum, current) => sum + current.count, 0);
-    $: votePercentageWidth = (optionCount: number) => Math.floor(100 / totalCount * optionCount);
+    $: votePercentageWidth = (optionCount: number) => Math.floor(100 / totalCount * optionCount) || 0;
 </script>
 
 <section>
