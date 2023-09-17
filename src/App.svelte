@@ -59,6 +59,21 @@
             ]
         }
     ];
+
+    function handleVote(event: CustomEvent): void {    
+        const { pollId, optionId } = event.detail;
+        const poll = polls.find(poll => poll.id === pollId);
+        
+        poll?.options.find(option => {
+            if (option.id === optionId) {
+                return option.count++;
+            } 
+        });
+
+        // Trigger rerender
+        polls = polls;
+    } 
+
     function toggleAside() {
         showAside = !showAside;
     }
@@ -67,7 +82,6 @@
         if (!event?.detail) {
             return;
         }
-
 
         polls = [...polls, event.detail];
     }
@@ -82,7 +96,7 @@
     </Button>
     <PollsList {polls} on:vote={handleVote} />
 </AppContainer>
-    
+
 <AppAside
     show={showAside}
     title={'Create new poll'}
