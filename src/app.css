@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+a {
+    @apply text-blue-600 hover:text-blue-700 font-medium underline;
+}
+
 .focus {
     @apply focus:outline-none focus:ring-4 focus:ring-indigo-300 focus:ring-opacity-75 transition;
 }

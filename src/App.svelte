@@ -88,12 +88,21 @@
 </script>
 
 <AppContainer>
-    <Button
-        type={buttonTypes.PRIMARY}
-        on:clicked={toggleAside}
-    >
-        New poll
-    </Button>
+    <header class="text-center my-12 flex gap-8 flex-col">
+        <h1 class="text-indigo-950 text-4xl font-black">Pollio</h1>
+        <p class="text-lg text-indigo-800">
+            No, not a dyslexic's version of the devestating virus but a simple poll creator made using Svelte and Tailwind CSS with help from 
+            <a href="https://www.youtube.com/playlist?list=PL4cUxeGkcC9hlbrVO_2QFVqVPhlZmz7tO">Net Ninja</a>'s Svelte beginners course.
+        </p>
+        <span>
+            <Button
+                type={buttonTypes.PRIMARY}
+                on:clicked={toggleAside}
+            >
+                { !showAside ? 'New poll' : 'Close' }
+            </Button>
+        </span>
+    </header>
     <PollsList {polls} on:vote={handleVote} />
 </AppContainer>
 
