@@ -57,12 +57,12 @@
     on:submit|preventDefault
 >
     <FormLabel label={'Poll question'}>
-        <input type="text" bind:value={newQuestion}>
+        <input type="text" class="focus" bind:value={newQuestion}>
     </FormLabel>
 
     {#each answers as answer (answer.id)}
         <FormLabel label={'Answer ' + (getAnswerIndex(answer.id) + 1)}>
-            <input type="text" bind:value={answer.value}>
+            <input type="text" class="focus" bind:value={option.value}>
         </FormLabel>
     {/each}
 
@@ -91,6 +91,6 @@
 
 <style lang="postcss">
     input {
-        @apply pl-2 text-indigo-900 w-full h-10 focus:outline-none rounded-md focus:ring-2 ring-indigo-400 focus:ring-opacity-75;
+        @apply pl-2 text-indigo-900 w-full h-10 rounded-md;
     }
 </style>

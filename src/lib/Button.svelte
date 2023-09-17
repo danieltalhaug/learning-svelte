@@ -8,7 +8,7 @@
 </script>
 
 <button
-    class="{type} px-8 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-opacity-75 transition border-2 border-indigo-600"
+    class="{type} px-8 py-2 rounded-md border-2 border-indigo-600 focus"
     on:click={() => dispatch('clicked')}
 >
     <slot />
