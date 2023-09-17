@@ -17,6 +17,7 @@
     }
 
     $: totalCount = poll.options.reduce((sum, current) => sum + current.count, 0);
+    $: votePercentageWidth = (optionCount: number) => Math.floor(100 / totalCount * optionCount);
 </script>
 
 <section>
@@ -29,12 +30,15 @@
         <!-- svelte-ignore a11y-no-static-element-interactions -->
         <section
             tabindex="0"
-            class="px-4 py-2 my-4 bg-indigo-50 hover:bg-indigo-100 transition rounded-sm focus cursor-pointer"
+            class="px-4 py-2 my-4 bg-indigo-50 hover:bg-indigo-100 transition rounded-sm focus cursor-pointer relative"
             on:click={() => doVote(event, option.id)}
             on:keypress={() => doVote(event, option.id)}
         >
-            <div />
-            <h4 class="flex justify-between">{option.value} <span>{option.count}</span></h4>
+            <div
+                class="absolute top-0 left-0 h-full bg-indigo-200"
+                style={`width: ${votePercentageWidth(option.count)}%`}
+            />
+            <h4 class="relative flex justify-between">{option.value} <span>{option.count}</span></h4>
         </section>
     {/each}
 </section>
