@@ -20,4 +20,8 @@
     .primary, .secondary {
         @apply hover:bg-indigo-500 hover:text-indigo-50;
     }
+
+    .delete {
+        @apply text-red-500 border-red-600 hover:bg-red-500 hover:text-white;
+    }
 </style>
