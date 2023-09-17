@@ -1,15 +1,13 @@
 <script lang="ts">
-    import { createEventDispatcher } from 'svelte';
     // types
     import { buttonTypes } from '../common/enums';
 
     export let type: buttonTypes;
-    const dispatch = createEventDispatcher();
 </script>
 
 <button
     class="{type} px-8 py-2 rounded-md border-2 border-indigo-600 focus"
-    on:click={() => dispatch('clicked')}
+    on:click
 >
     <slot />
 </button>

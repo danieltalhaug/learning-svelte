@@ -97,7 +97,7 @@
         <span>
             <Button
                 type={buttonTypes.PRIMARY}
-                on:clicked={toggleAside}
+                on:click={toggleAside}
             >
                 { !showAside ? 'New poll' : 'Close' }
             </Button>

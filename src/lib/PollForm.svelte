@@ -71,7 +71,7 @@
 
     <Button
         type={buttonTypes.SECONDARY}
-        on:clicked={onAddNewoption}
+        on:click={onAddNewoption}
     >
         + Add option
     </Button>
@@ -79,13 +79,13 @@
     <footer class="my-4 flex justify-between">
         <Button
             type={buttonTypes.SECONDARY}
-            on:clicked={onCancel}
+            on:click={onCancel}
         >
             Cancel
         </Button>
         <Button
             type={buttonTypes.PRIMARY}
-            on:clicked={onSubmit}
+            on:click={onSubmit}
         >
             Create poll
         </Button>
