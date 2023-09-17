@@ -35,7 +35,7 @@
             on:keypress={() => doVote(event, option.id)}
         >
             <div
-                class="absolute top-0 left-0 h-full bg-indigo-200"
+                class="absolute top-0 left-0 h-full bg-indigo-200 transition-all"
                 style={`width: ${votePercentageWidth(option.count)}%`}
             />
             <h4 class="relative flex justify-between">{option.value} <span>{option.count}</span></h4>
