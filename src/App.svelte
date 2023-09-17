@@ -72,7 +72,11 @@
 
         // Trigger rerender
         polls = polls;
-    } 
+    }
+
+    function handleDelete(event: CustomEvent) {
+        polls = polls.filter(poll => poll.id !== event.detail);
+    }
 
     function toggleAside() {
         showAside = !showAside;
@@ -103,7 +107,7 @@
             </Button>
         </span>
     </header>
-    <PollsList {polls} on:vote={handleVote} />
+    <PollsList {polls} on:vote={handleVote} on:delete={handleDelete} />
 </AppContainer>
 
 <AppAside

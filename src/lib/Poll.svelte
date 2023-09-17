@@ -1,6 +1,11 @@
 <script lang="ts">
-    import { createEventDispatcher } from 'svelte';
+    // Types
     import type { id, poll } from '../common/types';
+    import { buttonTypes } from '../common/enums';
+    // Libs
+    import { createEventDispatcher } from 'svelte';
+    // Components
+    import Button from './Button.svelte';
     
     export let poll: poll;
     const dispatch = createEventDispatcher();
@@ -14,6 +19,10 @@
                 optionId,
             });
         }
+    }
+
+    function doDelete(): void {
+        dispatch('delete', poll.id);
     }
 
     $: totalCount = poll.options.reduce((sum, current) => sum + current.count, 0);
@@ -41,6 +50,11 @@
             <h4 class="relative flex justify-between">{option.value} <span>{option.count}</span></h4>
         </section>
     {/each}
+    <footer>
+        <Button type={buttonTypes.DELETE} on:click={doDelete}>
+            Delete
+        </Button>
+    </footer>
 </section>
 
 <style lang="postcss">
