@@ -10,84 +10,9 @@
     import Button from './lib/Button.svelte';
 
     let showAside = false;
-    let polls: poll[] = [
-        {
-            id: "EdmNyOwVF8OHhZm2fafY_",
-            question: "Favourite food?",
-            options: [
-                {
-                    id: "cl-JMyPaMWAYY4n5wgd4k",
-                    value: "Tacos",
-                    count: 4
-                },
-                {
-                    id: "1yYee_WLRcRfVCCSl8za8",
-                    value: "Pizza",
-                    count: 2
-                },
-                {
-                    id: "yDjbl7iYk3fPPy9hy0orc",
-                    value: "BBQ",
-                    count: 3
-                },
-                {
-                    id: "2zo9yBplLMay1tX6Ipmzh",
-                    value: "Hamburger",
-                    count: 9
-                }
-            ]
-        },
-        {
-            id: "N3MvjvlU-1cRHE5_suEHI",
-            question: "Favourite car brand?",
-            options: [
-                {
-                    id: "pugHH39eofm5ckQ-UZN-F",
-                    value: "Ferrari",
-                    count: 8
-                },
-                {
-                    id: "mehMHHZK8W39znFe7F4oC",
-                    value: "Lamborghini",
-                    count: 24
-                },
-                {
-                    id: "Dj9iHZoOmEsoG3cvHPyQg",
-                    value: "Aston Martin",
-                    count: 6
-                }
-            ]
-        }
-    ];
-
-    function handleVote(event: CustomEvent): void {    
-        const { pollId, optionId } = event.detail;
-        const poll = polls.find(poll => poll.id === pollId);
-        
-        poll?.options.find(option => {
-            if (option.id === optionId) {
-                return option.count++;
-            } 
-        });
-
-        // Trigger rerender
-        polls = polls;
-    }
-
-    function handleDelete(event: CustomEvent) {
-        polls = polls.filter(poll => poll.id !== event.detail);
-    }
 
     function toggleAside() {
         showAside = !showAside;
-    }
-
-    function onCreatePoll(event: CustomEvent) {
-        if (!event?.detail) {
-            return;
-        }
-
-        polls = [...polls, event.detail];
     }
 </script>
 
@@ -107,7 +32,7 @@
             </Button>
         </span>
     </header>
-    <PollsList {polls} on:vote={handleVote} on:delete={handleDelete} />
+    <PollsList />
 </AppContainer>
 
 <AppAside
@@ -116,7 +41,6 @@
     subtitle={'Add a question and the amount of options you want, submit to create a new poll.'}
 >
     <PollForm
-        on:submit={onCreatePoll}
         on:cancel={toggleAside}
     />
 </AppAside>
