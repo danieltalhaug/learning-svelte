@@ -2,6 +2,8 @@
     // Types
     import type { id, question, option } from '../common/types';
     import { buttonTypes } from '../common/enums';
+    // Stores
+    import PollStore from '../stores/PollStore';
     // Components
     import FormLabel from './FormLabel.svelte';
     import Button from './Button.svelte';
@@ -31,10 +33,14 @@
 
     // Submits and creates a new poll
     function onSubmit(): void {
-        dispatch('submit', {
-            id: nanoid(),
-            question: newQuestion,
-            options,
+        PollStore.update(polls => {
+            return [...polls,
+                {
+                    id: nanoid(),
+                    question: newQuestion,
+                    options,
+                }
+            ]
         });
 
         resetForm();
